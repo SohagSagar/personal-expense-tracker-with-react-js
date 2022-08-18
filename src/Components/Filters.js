@@ -2,7 +2,7 @@ import React from 'react';
 
 const Filters = () => {
     return (
-        <div class="card w-80 bg-base-100 border">
+        <div class="card w-80 bg-base-100 border  ">
             <div class="card-body">
                 <h2 class="text-start text-xl font-bold">Filter</h2><hr />
 

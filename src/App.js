@@ -5,8 +5,8 @@ import BodyComponent from './Components/BodyComponent';
 
 function App() {
   return (
-    <div className='px-24'>
-      <header className='text-2xl font-bold text-center py-4'>Personal Expense Tracker</header>
+    <div className='px-24 relative'>
+      
       <TotalExpenseIncome/>
       <BodyComponent/>
       

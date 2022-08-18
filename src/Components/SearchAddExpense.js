@@ -7,7 +7,7 @@ import AddExpenseModal from './AddExpenseModal';
 const SearchAddExpense = () => {
     const [isModalOpen, setIsModalOpen] = useState(true);
     return (
-        <div>
+        <div className=''>
             <div className=' flex justify-between pb-5'>
                 <div className='flex gap-3'>
                     {/* search items */}
