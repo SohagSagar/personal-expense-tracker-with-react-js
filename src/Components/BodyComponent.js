@@ -8,9 +8,10 @@ const BodyComponent = () => {
 
     return (
         <div className='body-container gap-5 mt-5'>
-
+            {/* filter components */}
             <Filters/>
 
+            {/* display components */}
             <TotalExpenseIncome />
 
         </div>
