@@ -1,7 +1,8 @@
 import React from 'react';
 import '../Styles/BodyComponents.css'
 import Filters from './Filters';
-import TotalExpenseIncome from './TotalExpenseIncome';
+import SearchAddExpense from './SearchAddExpense';
+
 
 const BodyComponent = () => {
 
@@ -11,8 +12,8 @@ const BodyComponent = () => {
             {/* filter components */}
             <Filters/>
 
-            {/* display components */}
-            <TotalExpenseIncome />
+            {/* display all the summary components */}
+            <SearchAddExpense />
 
         </div>
 
