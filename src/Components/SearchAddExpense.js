@@ -5,7 +5,7 @@ import { MdAddCircleOutline } from 'react-icons/md';
 
 const SearchAddExpense = () => {
     return (
-        <div className=' flex justify-between '>
+        <div className=' flex justify-between pb-5'>
             <div className='flex  gap-3'>
                 {/* search items */}
                 <div class="form-control ">
@@ -22,12 +22,12 @@ const SearchAddExpense = () => {
                 <div className=''>
                     <button class="btn btn-active  inline-block"><BiSort className='font-bold text-xl' /></button>
 
-                    
+
                 </div>
             </div>
 
-        {/* add expense/income btn */}
-        <button class="btn btn-ghost"><MdAddCircleOutline className='font-bold text-3xl' /></button>
+            {/* add expense/income btn */}
+            <button class="btn btn-ghost"><MdAddCircleOutline className='font-bold text-3xl' /></button>
 
 
         </div>
