@@ -7,7 +7,7 @@ const BodyComponent = () => {
 
 
     return (
-        <div className='body-container'>
+        <div className='body-container gap-5 mt-5'>
 
             <Filters/>
 
