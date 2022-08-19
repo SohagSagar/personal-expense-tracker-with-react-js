@@ -15,14 +15,13 @@ const addToLocalStroage = (incomeExpenseData) => {
 }
 
 const getStoredCart = () =>{
-    let expenseTracker = {};
-
-    //get the shopping cart from local storage
-    const storedData = localStorage.getItem('expense-tracker');
+    let data;
+    //get the storedData from local storage
+    const storedData = localStorage.getItem('items');
     if(storedData){
-        expenseTracker = JSON.parse(storedData);
+        data = JSON.parse(storedData);
     }
-    return expenseTracker;
+    return data;
 }
 
 const removeFromLocalStroage = (id,refreshUl,setRefreshUl) => {

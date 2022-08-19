@@ -10,7 +10,7 @@ function App() {
   return (
     <div className='px-24 relative'>
       
-      <TotalExpenseIncome/>
+      <TotalExpenseIncome refreshUl={refreshUl}/>
       <BodyComponent refreshUl={refreshUl} setRefreshUl={setRefreshUl}/>
       <Toaster />
     </div>
