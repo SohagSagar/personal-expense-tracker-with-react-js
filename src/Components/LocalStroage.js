@@ -1,3 +1,6 @@
+//refresh ui
+
+
 // use local storage to manage cart data
 const addToLocalStroage = (incomeExpenseData) => {
     const items = JSON.parse(localStorage.getItem('items'));

@@ -7,6 +7,7 @@ import { useState } from 'react';
 
 function App() {
   const [refreshUl, setRefreshUl] = useState(true);
+  console.log(refreshUl);
   return (
     <div className='px-24 relative'>
       

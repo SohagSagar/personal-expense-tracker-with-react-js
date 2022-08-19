@@ -1,23 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { TbCurrencyTaka } from 'react-icons/tb';
+import useTotalExpenseIncome from '../Hooks/useTotalExpenseIncome';
 import { getStoredCart } from './LocalStroage';
 
 const TotalExpenseIncome = ({refreshUl}) => {
-    const [storedItems,setStoredItems]=useState([])
-    console.log('storedData',storedItems);
 
-    useEffect(()=>{
-        setStoredItems(getStoredCart());
-    },[refreshUl]);
+    // const [storedItems,setStoredItems]=useState([])
+    // console.log('storedData',storedItems);
 
-    let totalIncome=0;
-    totalIncome=storedItems.filter(storedItem=>storedItem.type==='Income').reduce((pre,curr)=>(pre+parseInt( curr.amount)),0)
+    // useEffect(()=>{
+    //     setStoredItems(getStoredCart());
+    // },[refreshUl]);
 
-    let totalExpense=0;
-    totalExpense=storedItems.filter(storedItem=>storedItem.type==='Expense').reduce((pre,curr)=>(pre+parseInt( curr.amount)),0)
 
-    console.log(totalExpense);
-    // console.log(storedItems.filter(storedItem=>storedItem.type==='Income'));   
+    // // total income 
+    // let totalIncome=0;
+    // totalIncome=storedItems.filter(storedItem=>storedItem.type==='Income').reduce((pre,curr)=>(pre+parseInt( curr.amount)),0)
+
+    // // total expense 
+    // let totalExpense=0;
+    // totalExpense=storedItems.filter(storedItem=>storedItem.type==='Expense').reduce((pre,curr)=>(pre+parseInt( curr.amount)),0)
+    
+    const [totalIncome,totalExpense]=useTotalExpenseIncome(refreshUl);
+  
     return (
         <div class="card w-full bg-base-100 border sticky top-1 z-10">
             <header className='text-2xl font-bold text-center pt-5'>Personal Expense Tracker</header>
