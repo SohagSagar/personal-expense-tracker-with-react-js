@@ -5,7 +5,7 @@ import SearchAddExpense from './SearchAddExpense';
 import SummaryCard from './SummaryCard';
 
 
-const BodyComponent = () => {
+const BodyComponent = ({refreshUl,setRefreshUl}) => {
 
 
     return (
@@ -15,10 +15,10 @@ const BodyComponent = () => {
 
             <div>
                 {/* display all the summary components */}
-                <SearchAddExpense />
+                <SearchAddExpense  refreshUl={refreshUl} setRefreshUl={setRefreshUl}/>
 
                 {/* summary card  */}
-                <SummaryCard />
+                <SummaryCard refreshUl={refreshUl} setRefreshUl={setRefreshUl}/>
             </div>
 
         </div>

@@ -4,7 +4,7 @@ import { MdAddCircleOutline } from 'react-icons/md';
 import AddExpenseModal from './AddExpenseModal';
 
 
-const SearchAddExpense = () => {
+const SearchAddExpense = ({refreshUl,setRefreshUl}) => {
     const [isModalOpen, setIsModalOpen] = useState(true);
     return (
         <div className=''>
@@ -31,14 +31,14 @@ const SearchAddExpense = () => {
 
                 {/* add expense/income btn */}
                 <div>
-                    <label for="my-modal-6" class="btn btn-ghost"><MdAddCircleOutline className='font-bold text-3xl' /></label>
+                    <label onClick={()=>setIsModalOpen(true)} for="my-modal-6" class="btn btn-ghost"><MdAddCircleOutline className='font-bold text-3xl' /></label>
                 </div>
                 {/* <label for="my-modal-6"  class="btn modal-button">open modal</label> */}
 
 
             </div>
             {
-                isModalOpen && <AddExpenseModal />
+                isModalOpen && <AddExpenseModal refreshUl={refreshUl} setRefreshUl={setRefreshUl} setIsModalOpen={setIsModalOpen}/>
             }
         </div>
 

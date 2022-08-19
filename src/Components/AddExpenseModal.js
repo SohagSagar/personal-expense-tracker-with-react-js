@@ -5,14 +5,11 @@ import { MdError } from 'react-icons/md';
 import { addToLocalStroage, getStoredCart } from './LocalStroage';
 
 
-const AddExpenseModal = () => {
-    const [storedData, setStoreData] = useState([])
+const AddExpenseModal = ({refreshUl,setRefreshUl,setIsModalOpen}) => {
+    
     const { register, reset, handleSubmit, formState: { errors } } = useForm();
     const requiredMessage = 'field is required';
 
-
-    
-    
 
 
     const onSubmit = data => {
@@ -25,7 +22,9 @@ const AddExpenseModal = () => {
 
     const sentDataToLocalStroage=  addToLocalStroage(incomeExpenseData);
     if(sentDataToLocalStroage){
-        toast.success('Item added successfully')
+        toast.success('Item added successfully');
+        setRefreshUl(!refreshUl);
+        setIsModalOpen(false);
     }else{
         toast.error('Fail to add item')
     }

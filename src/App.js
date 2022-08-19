@@ -3,13 +3,15 @@ import './App.css';
 import TotalExpenseIncome from './Components/TotalExpenseIncome';
 import BodyComponent from './Components/BodyComponent';
 import { Toaster } from 'react-hot-toast';
+import { useState } from 'react';
 
 function App() {
+  const [refreshUl, setRefreshUl] = useState(true);
   return (
     <div className='px-24 relative'>
       
       <TotalExpenseIncome/>
-      <BodyComponent/>
+      <BodyComponent refreshUl={refreshUl} setRefreshUl={setRefreshUl}/>
       <Toaster />
     </div>
   );

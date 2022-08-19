@@ -1,39 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { TbCurrencyTaka } from 'react-icons/tb';
 import { MdDriveFileRenameOutline } from 'react-icons/md';
 import { RiDeleteBin6Line } from 'react-icons/ri';
+import SummaryCardList from './SummaryCardList';
 
 
 
-const SummaryCard = () => {
-    const stroageData= JSON.parse(localStorage.getItem('items'))
+const SummaryCard = ({refreshUl,setRefreshUl}) => {
+    const [items,setItems]=useState([])
+    useEffect(()=>{
+        const stroageItems = JSON.parse(localStorage.getItem('items'))
+        setItems(stroageItems);
+    },[refreshUl])
+    
     return (
 
-        <div class="card w-full bg-base-100 border ">
-            <div class="card-body p-5">
-
-                <div className='flex justify-between items-center'>
-
-                    {/* card info */}
-                    <div className='w-10/12'>
-                        <h2 class="font-semibold">Descriptions: <span className='font-normal'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla accusamus explicabo est maxime nihil dolore temporibus voluptate nesciunt? Autem, suscipit!</span></h2>
-
-                        <h2 class="font-semibold mt-2">Category: <span className='font-normal'>Income |</span> <span className='badge badge-md bg-green-600 border-none text-white'>+<TbCurrencyTaka className='inline-block mb-1'/>5000</span></h2>
-                        
-
-                    </div>
-
-                    {/* card actions */}
-                    <div >
-                        <div class="btn-group ">
-                            <button class="btn  btn-sm bg-green-600  border-none text-white"><MdDriveFileRenameOutline/></button>
-                            <button class="btn  btn-sm bg-red-600  border-none text-white"><RiDeleteBin6Line/></button>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
+        <div className='grid grid-cols-1 gap-3'>
+            {
+                [...items].reverse().map(item=><SummaryCardList
+                key={item.id}
+                item={item}
+                refreshUl={refreshUl}
+                setRefreshUl={setRefreshUl}
+                />)
+            }
+            
         </div>
 
     );
