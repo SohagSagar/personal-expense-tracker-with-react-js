@@ -15,7 +15,7 @@ const SearchAddExpense = ({ refreshUl, setRefreshUl,setSeatchText,sortItem,setSo
 
     }
     return (
-        <div className=''>
+        <div style={{ "position": "fixed", "marginTop": "20px", "marginLeft": "420px", }}  className=''>
             <div className=' flex justify-between pb-5'>
                 <div className='flex gap-3'>
                     {/* search items */}

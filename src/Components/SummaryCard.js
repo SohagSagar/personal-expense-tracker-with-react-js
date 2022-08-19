@@ -67,7 +67,7 @@ const SummaryCard = ({ refreshUl, setRefreshUl, searchedText, sortItem, filterBy
 
     return (
 
-        <div>
+        <div style={{"position": "fixed", "marginTop": "80px", "marginLeft": "350px", "overflow": "scroll","width":"800px","height":"400px"}}>
             <div className='grid grid-cols-1 gap-3'>
                 {
                     items?.length < 1 ? <p className='text-center text-lg font-semibold mt-3'>No item found</p> :
