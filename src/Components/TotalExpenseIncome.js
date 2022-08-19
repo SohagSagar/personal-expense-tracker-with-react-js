@@ -5,21 +5,7 @@ import { getStoredCart } from './LocalStroage';
 
 const TotalExpenseIncome = ({refreshUl}) => {
 
-    // const [storedItems,setStoredItems]=useState([])
-    // console.log('storedData',storedItems);
-
-    // useEffect(()=>{
-    //     setStoredItems(getStoredCart());
-    // },[refreshUl]);
-
-
-    // // total income 
-    // let totalIncome=0;
-    // totalIncome=storedItems.filter(storedItem=>storedItem.type==='Income').reduce((pre,curr)=>(pre+parseInt( curr.amount)),0)
-
-    // // total expense 
-    // let totalExpense=0;
-    // totalExpense=storedItems.filter(storedItem=>storedItem.type==='Expense').reduce((pre,curr)=>(pre+parseInt( curr.amount)),0)
+    
     
     const [totalIncome,totalExpense]=useTotalExpenseIncome(refreshUl);
   

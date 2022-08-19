@@ -8,36 +8,43 @@ import SummaryCardList from './SummaryCardList';
 
 const SummaryCard = ({ refreshUl, setRefreshUl, searchedText, sortItem, filterByType }) => {
     const [items, setItems] = useState([]);
-    const [stroredData, setStroedData] = useState('')
+    const [typeFilter, setTypeFilter] = useState('')
     useEffect(() => {
-        const stroageItems = JSON.parse(localStorage.getItem('items'))
-        setStroedData(stroageItems);
-        sortItem ? setItems([...stroageItems].reverse()) : setItems(stroageItems)
+        const fetchData= async () =>{
+            const stroageItems = JSON.parse(localStorage.getItem('items'))
+            // setStroedData(stroageItems);
+           await sortItem ? setItems([...stroageItems].reverse()) : setItems(stroageItems)
+        }
+        fetchData();
+        
 
-    }, [refreshUl, sortItem]);
-
-    console.log('filterByType', filterByType);
+    }, [refreshUl, sortItem,filterByType]);
 
 
-    // useEffect(() => {
-    //     setItems(items)
-    //     if (filterByType) {
-    //         const filteredItem = items.filter(item => item?.type === filterByType);
-    //         console.log(filteredItem);
-    //         setItems(filteredItem)
-    //     } 
-    // }, [filterByType]);
+
+    useEffect(() => {
+        if(filterByType===false){
+            setTypeFilter(false)
+        }
+        
+        if (filterByType) {
+            const filteredItem = items.filter(item => item?.type === filterByType);
+            console.log(filteredItem);
+            setTypeFilter(filteredItem)
+        } 
+    }, [filterByType]);
 
 
 
 
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(5);
+    console.log('typeFilter',typeFilter);
 
     // Get current posts
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentPosts = items ? items?.slice(indexOfFirstPost, indexOfLastPost) : [];
+    const currentPosts = typeFilter?.length>0 ? typeFilter?.slice(indexOfFirstPost, indexOfLastPost) : items ? items?.slice(indexOfFirstPost, indexOfLastPost) : [];
 
     // get total page
     const totalPage = Math.ceil(items?.length / postsPerPage)
@@ -52,7 +59,7 @@ const SummaryCard = ({ refreshUl, setRefreshUl, searchedText, sortItem, filterBy
                 {
                     items?.length < 1 ? <p className='text-center text-lg font-semibold mt-3'>No item found</p> :
 
-                        [...currentPosts]?.filter((val) => {
+                   [...currentPosts]?.filter((val) => {
                             if (!searchedText) {
                                 return val;
                             } else if (

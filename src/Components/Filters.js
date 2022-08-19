@@ -36,7 +36,7 @@ const Filters = ({setFilterByType}) => {
                         <input onChange={handleTypeFilter} type="radio" name='type' value={'Expense'} class="checkbox checkbox-xs mr-3" />
                         <p>Expense </p>
                     </div>
-
+                    <button onClick={()=>setFilterByType(false)} class="btn btn-xs rounded-full mt-2">Reset</button>
 
                 </div>
 
