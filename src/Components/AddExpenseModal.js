@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { MdError } from 'react-icons/md';
+import useTotalExpenseIncome from '../Hooks/useTotalExpenseIncome';
 import { addToLocalStroage, getStoredCart } from './LocalStroage';
 
 
@@ -10,7 +11,7 @@ const AddExpenseModal = ({refreshUl,setRefreshUl,setIsModalOpen}) => {
     const { register, reset, handleSubmit, formState: { errors } } = useForm();
     const requiredMessage = 'field is required';
 
-
+    const [totalIncome,totalExpense]= useTotalExpenseIncome(refreshUl)
 
     const onSubmit = data => {
     const randomId = Math.floor(10000000 + Math.random() * 10000000);
@@ -18,6 +19,17 @@ const AddExpenseModal = ({refreshUl,setRefreshUl,setIsModalOpen}) => {
     const incomeExpenseData = {
         id:randomId,
         ...data
+        
+    }
+
+    const newIncome= data.type==='Income' ? (parseInt(data.amount)+totalIncome) : totalIncome
+    const newExpense= data.type==='Expense' ? (parseInt(data.amount)+totalExpense) : totalExpense
+
+    console.log('newIncome',newIncome);
+    console.log('newExpense',newExpense);
+
+    if(newIncome<newExpense){
+        return <>{toast.error('Expense exceed the income amount')}</>
     }
 
     const sentDataToLocalStroage=  addToLocalStroage(incomeExpenseData);
