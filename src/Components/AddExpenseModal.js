@@ -1,52 +1,51 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { MdError } from 'react-icons/md';
 import useTotalExpenseIncome from '../Hooks/useTotalExpenseIncome';
-import { addToLocalStroage, getStoredCart } from './LocalStroage';
+import { addToLocalStroage } from './LocalStroage';
 
 
-const AddExpenseModal = ({refreshUl,setRefreshUl,setIsModalOpen}) => {
-    
+const AddExpenseModal = ({ refreshUl, setRefreshUl, setIsModalOpen }) => {
+
     const { register, reset, handleSubmit, formState: { errors } } = useForm();
     const requiredMessage = 'field is required';
 
-    const [totalIncome,totalExpense]= useTotalExpenseIncome(refreshUl)
+    const [totalIncome, totalExpense] = useTotalExpenseIncome(refreshUl)
 
+
+    // get the form data
     const onSubmit = data => {
-    const randomId = Math.floor(10000000 + Math.random() * 10000000);
-   
-    const incomeExpenseData = {
-        id:randomId,
-        ...data
-        
-    }
+        const randomId = Math.floor(10000000 + Math.random() * 10000000);
 
-    const newIncome= data.type==='Income' ? (parseInt(data.amount)+totalIncome) : totalIncome
-    const newExpense= data.type==='Expense' ? (parseInt(data.amount)+totalExpense) : totalExpense
+        const incomeExpenseData = {
+            id: randomId,
+            ...data
 
-    console.log('newIncome',newIncome);
-    console.log('newExpense',newExpense);
+        }
 
-    if(newIncome<newExpense){
-        return <>{toast.error('Expense exceed the income amount')}</>
-    }
+        // conditions for limiting the expense
+        const newIncome = data.type === 'Income' ? (parseInt(data.amount) + totalIncome) : totalIncome
+        const newExpense = data.type === 'Expense' ? (parseInt(data.amount) + totalExpense) : totalExpense
+        if (newIncome < newExpense) {
+            return <>{toast.error('Expense exceed the income amount')}</>
+        }
 
-    const sentDataToLocalStroage=  addToLocalStroage(incomeExpenseData);
-    if(sentDataToLocalStroage){
-        toast.success('Item added successfully');
-        setRefreshUl(!refreshUl);
-        setIsModalOpen(false);
-    }else{
-        toast.error('Fail to add item')
-    }
-    
-
-    
-
+        // store data into localStorage
+        const sentDataToLocalStroage = addToLocalStroage(incomeExpenseData);
+        if (sentDataToLocalStroage) {
+            toast.success('Item added successfully');
+            setRefreshUl(!refreshUl);
+            setIsModalOpen(false);
+            reset();
+        } else {
+            toast.error('Fail to add item')
+        }
 
 
     }
+
+
     return (
         <div>
             {/* <!-- Put this part before </body> tag-- > */}
@@ -70,11 +69,6 @@ const AddExpenseModal = ({refreshUl,setRefreshUl,setIsModalOpen}) => {
                             <input class="radio" type="radio" {...register('type')} value="Expense" />
                             <span class="label-text ml-2">Expense</span>
                         </label>
-
-
-
-
-
 
 
                         {/* amount */}

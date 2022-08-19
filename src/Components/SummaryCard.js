@@ -6,13 +6,29 @@ import SummaryCardList from './SummaryCardList';
 
 
 
-const SummaryCard = ({ refreshUl, setRefreshUl, searchedText, sortItem }) => {
-    const [items, setItems] = useState([])
+const SummaryCard = ({ refreshUl, setRefreshUl, searchedText, sortItem, filterByType }) => {
+    const [items, setItems] = useState([]);
+    const [stroredData, setStroedData] = useState('')
     useEffect(() => {
         const stroageItems = JSON.parse(localStorage.getItem('items'))
+        setStroedData(stroageItems);
         sortItem ? setItems([...stroageItems].reverse()) : setItems(stroageItems)
 
     }, [refreshUl, sortItem]);
+
+    console.log('filterByType', filterByType);
+
+
+    // useEffect(() => {
+    //     setItems(items)
+    //     if (filterByType) {
+    //         const filteredItem = items.filter(item => item?.type === filterByType);
+    //         console.log(filteredItem);
+    //         setItems(filteredItem)
+    //     } 
+    // }, [filterByType]);
+
+
 
 
     const [currentPage, setCurrentPage] = useState(1);
@@ -21,11 +37,11 @@ const SummaryCard = ({ refreshUl, setRefreshUl, searchedText, sortItem }) => {
     // Get current posts
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentPosts = items.slice(indexOfFirstPost, indexOfLastPost);
+    const currentPosts = items ? items?.slice(indexOfFirstPost, indexOfLastPost) : [];
 
     // get total page
-    const totalPage= Math.ceil(items.length / postsPerPage)
-    console.log('totalPage',totalPage);
+    const totalPage = Math.ceil(items?.length / postsPerPage)
+
 
 
 
@@ -55,13 +71,20 @@ const SummaryCard = ({ refreshUl, setRefreshUl, searchedText, sortItem }) => {
 
 
             </div>
-            <div class=" flex  justify-center mt-4">
-                <div className='btn-group'>
-                    <button onClick={()=>setCurrentPage(currentPage-1)} disabled={currentPage<2} class="btn">«</button>
-                    <button class="btn">Page {currentPage}/{totalPage}</button>
-                    <button onClick={()=>setCurrentPage(currentPage+1)} disabled={currentPage===totalPage} class="btn">»</button>
+
+            {/* paginations */}
+
+            {
+                items?.length > 0 &&
+                <div class=" flex  justify-center mt-4">
+                    <div className='btn-group'>
+                        <button onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage < 2} class="btn">«</button>
+                        <button class="btn">Page {currentPage}/{totalPage}</button>
+                        <button onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage === totalPage} class="btn">»</button>
+                    </div>
                 </div>
-            </div>
+            }
+
         </div>
 
     );

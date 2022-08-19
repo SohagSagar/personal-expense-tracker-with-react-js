@@ -12,11 +12,11 @@ const useTotalExpenseIncome = (refreshUl) => {
 
     // total income 
     let totalIncome = 0;
-    totalIncome = storedItems.filter(storedItem => storedItem.type === 'Income').reduce((pre, curr) => (pre + parseInt(curr.amount)), 0)
+    totalIncome = storedItems?.filter(storedItem => storedItem.type === 'Income')?.reduce((pre, curr) => (pre + parseInt(curr?.amount)), 0)
 
     // total expense 
     let totalExpense = 0;
-    totalExpense = storedItems.filter(storedItem => storedItem.type === 'Expense').reduce((pre, curr) => (pre + parseInt(curr.amount)), 0)
+    totalExpense = storedItems?.filter(storedItem => storedItem.type === 'Expense')?.reduce((pre, curr) => (pre + parseInt(curr?.amount)), 0)
 
 
     return [totalIncome,totalExpense]

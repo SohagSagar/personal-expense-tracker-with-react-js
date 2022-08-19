@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const Filters = () => {
+const Filters = ({setFilterByType}) => {
+
+    
+    const handleTypeFilter = (e) =>{
+        setFilterByType(e.target.value);
+    }
+
     return (
         <div class="card w-80 bg-base-100 border  ">
             <div class="card-body">
@@ -23,13 +29,15 @@ const Filters = () => {
                 <div className='pb-12'>
                     <h4 className='text-md font-semibold pb-1'>Type</h4><hr className='pb-2' />
                     <div className='flex justify-between items-center pb-1'>
-                        <input type="checkbox" class="checkbox checkbox-xs mr-3" />
+                        <input onChange={handleTypeFilter} type="radio" name='type' value={'Income'} class="checkbox checkbox-xs mr-3" />
                         <p>Income </p>
                     </div>
                     <div className='flex justify-between items-center'>
-                        <input type="checkbox" class="checkbox checkbox-xs mr-3" />
+                        <input onChange={handleTypeFilter} type="radio" name='type' value={'Expense'} class="checkbox checkbox-xs mr-3" />
                         <p>Expense </p>
                     </div>
+
+
                 </div>
 
                 {/* filter by category */}

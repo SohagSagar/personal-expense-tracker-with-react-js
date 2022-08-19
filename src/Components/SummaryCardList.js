@@ -12,7 +12,6 @@ const SummaryCardList = ({ item, refreshUl, setRefreshUl }) => {
     const { id, type, amount, category, description } = item;
     const [targetedUpdateItem,setTargetedUpdateItem]=useState([])
 
-    console.log(type);
     // remove item from list
     const handleRemoveItem = (id) => {
         const removeItem = removeFromLocalStroage(id, refreshUl, setRefreshUl);
@@ -26,7 +25,6 @@ const SummaryCardList = ({ item, refreshUl, setRefreshUl }) => {
 
     // update list item
     const handleUpdateItem = (id) =>{
-        console.log('object',id);
         const targetitem= getSingleItemFromLocalStroage(id);
         setTargetedUpdateItem(targetitem[0])
 
