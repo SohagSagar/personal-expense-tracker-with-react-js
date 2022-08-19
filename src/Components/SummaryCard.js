@@ -6,9 +6,10 @@ import SummaryCardList from './SummaryCardList';
 
 
 
-const SummaryCard = ({ refreshUl, setRefreshUl, searchedText, sortItem, filterByType }) => {
+const SummaryCard = ({ refreshUl, setRefreshUl, searchedText, sortItem, filterByType,filterByCategory }) => {
     const [items, setItems] = useState([]);
     const [typeFilter, setTypeFilter] = useState('')
+    const [categoryFilter, setCategoryFilter] = useState('')
     useEffect(() => {
         const fetchData= async () =>{
             const stroageItems = JSON.parse(localStorage.getItem('items'))
@@ -16,12 +17,11 @@ const SummaryCard = ({ refreshUl, setRefreshUl, searchedText, sortItem, filterBy
            await sortItem ? setItems([...stroageItems].reverse()) : setItems(stroageItems)
         }
         fetchData();
-        
 
     }, [refreshUl, sortItem,filterByType]);
 
 
-
+    // filter by types
     useEffect(() => {
         if(filterByType===false){
             setTypeFilter(false)
@@ -29,22 +29,35 @@ const SummaryCard = ({ refreshUl, setRefreshUl, searchedText, sortItem, filterBy
         
         if (filterByType) {
             const filteredItem = items.filter(item => item?.type === filterByType);
-            console.log(filteredItem);
             setTypeFilter(filteredItem)
         } 
     }, [filterByType]);
 
+    // filter by categories
+    useEffect(() => {
+        if(filterByCategory===false){
+            setCategoryFilter(false)
+        }
+        
+        if (filterByCategory) {
+            const filteredItem = items.filter(item => item?.category === filterByCategory);
+            setCategoryFilter(filteredItem)
+            console.log(filteredItem);
+        } 
+    }, [filterByCategory]);
 
 
 
+    // data for pagination
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(5);
-    console.log('typeFilter',typeFilter);
+
 
     // Get current posts
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentPosts = typeFilter?.length>0 ? typeFilter?.slice(indexOfFirstPost, indexOfLastPost) : items ? items?.slice(indexOfFirstPost, indexOfLastPost) : [];
+    const currentPosts =categoryFilter?.length>0 ? categoryFilter?.slice(indexOfFirstPost, indexOfLastPost) :typeFilter?.length>0 ? typeFilter?.slice(indexOfFirstPost, indexOfLastPost) 
+    : items ? items?.slice(indexOfFirstPost, indexOfLastPost) : [];
 
     // get total page
     const totalPage = Math.ceil(items?.length / postsPerPage)

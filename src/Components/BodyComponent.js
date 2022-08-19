@@ -9,20 +9,22 @@ const BodyComponent = ({refreshUl,setRefreshUl}) => {
     const [searchedText,setSeatchText]=useState('');
     const [sortItem,setSortItem]=useState(false);
     const [filterByType,setFilterByType]=useState('');
-    console.log(filterByType);
+    const [filterByCategory,setfilterByCategory]=useState('');
+    console.log(filterByCategory);
+
 
 
     return (
         <div className='body-container gap-5 mt-5'>
             {/* filter components */}
-            <Filters setFilterByType={setFilterByType}/>
+            <Filters setFilterByType={setFilterByType} setfilterByCategory={setfilterByCategory}/>
 
             <div>
                 {/* display all the summary components */}
                 <SearchAddExpense sortItem={sortItem} setSortItem={setSortItem} setSeatchText={setSeatchText} refreshUl={refreshUl} setRefreshUl={setRefreshUl}/>
 
                 {/* summary card  */}
-                <SummaryCard filterByType={filterByType} sortItem={sortItem} searchedText={searchedText} refreshUl={refreshUl} setRefreshUl={setRefreshUl}/>
+                <SummaryCard filterByCategory={filterByCategory} filterByType={filterByType} sortItem={sortItem} searchedText={searchedText} refreshUl={refreshUl} setRefreshUl={setRefreshUl}/>
             </div>
 
         </div>

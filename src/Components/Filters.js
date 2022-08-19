@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
 
-const Filters = ({setFilterByType}) => {
+const Filters = ({setFilterByType,setfilterByCategory}) => {
 
     
     const handleTypeFilter = (e) =>{
         setFilterByType(e.target.value);
+        setfilterByCategory(false)
+    }
+
+    const handleCategory = (e) =>{
+        setfilterByCategory(e.target.value);
+        setFilterByType(false)
     }
 
     return (
@@ -45,34 +51,36 @@ const Filters = ({setFilterByType}) => {
                     <h4 className='text-md font-semibold pb-1'>Category</h4><hr className='pb-2' />
 
                     <div className='flex justify-between items-center pb-1'>
-                        <input type="checkbox" class="checkbox checkbox-xs mr-3" />
+                        <input onClick={handleCategory}  type="radio" name={'category'} value={'food'} class="checkbox checkbox-xs mr-3" />
                         <p>Food </p>
                     </div>
 
                     <div className='flex justify-between items-center pb-1'>
-                        <input type="checkbox" class="checkbox checkbox-xs mr-3" />
+                        <input onClick={handleCategory}  type="radio" name={'category'} value={'travel'} class="checkbox checkbox-xs mr-3" />
                         <p>Travel </p>
                     </div>
 
                     <div className='flex justify-between items-center pb-1'>
-                        <input type="checkbox" class="checkbox checkbox-xs mr-3" />
+                        <input onClick={handleCategory}  type="radio" name={'category'} value={'salary'} class="checkbox checkbox-xs mr-3" />
                         <p>Salary </p>
                     </div>
 
                     <div className='flex justify-between items-center pb-1'>
-                        <input type="checkbox" class="checkbox checkbox-xs mr-3" />
+                        <input onClick={handleCategory}  type="radio" name={'category'} value={'utilities'} class="checkbox checkbox-xs mr-3" />
                         <p>Utilities </p>
                     </div>
 
                     <div className='flex justify-between items-center pb-1'>
-                        <input type="checkbox" class="checkbox checkbox-xs mr-3" />
+                        <input onClick={handleCategory}  type="radio" name={'category'} value={'medical'} class="checkbox checkbox-xs mr-3" />
                         <p>Medical </p>
                     </div>
 
                     <div className='flex justify-between items-center pb-1'>
-                        <input type="checkbox" class="checkbox checkbox-xs mr-3" />
+                        <input onClick={handleCategory} type="radio" name={'category'} value={'personal'} class="checkbox checkbox-xs mr-3" />
                         <p>Personal </p>
                     </div>
+
+                    <button onClick={()=>setfilterByCategory(false)} class="btn btn-xs rounded-full mt-2">Reset</button>
 
                 </div>
 
