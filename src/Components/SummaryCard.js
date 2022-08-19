@@ -6,12 +6,13 @@ import SummaryCardList from './SummaryCardList';
 
 
 
-const SummaryCard = ({refreshUl,setRefreshUl,searchedText}) => {
+const SummaryCard = ({refreshUl,setRefreshUl,searchedText,sortItem}) => {
     const [items,setItems]=useState([])
     useEffect(()=>{
         const stroageItems = JSON.parse(localStorage.getItem('items'))
-        setItems(stroageItems);
-    },[refreshUl])
+        sortItem ? setItems([...stroageItems].reverse()) : setItems(stroageItems)
+        
+    },[refreshUl,sortItem])
     
     return (
 

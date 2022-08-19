@@ -6,7 +6,7 @@ import AddExpenseModal from './AddExpenseModal';
 
 
 
-const SearchAddExpense = ({ refreshUl, setRefreshUl,setSeatchText }) => {
+const SearchAddExpense = ({ refreshUl, setRefreshUl,setSeatchText,sortItem,setSortItem }) => {
     const [isModalOpen, setIsModalOpen] = useState(true);
     const { register, reset, handleSubmit } = useForm();
 
@@ -33,7 +33,7 @@ const SearchAddExpense = ({ refreshUl, setRefreshUl,setSeatchText }) => {
 
                     {/* sorting items */}
                     <div className=''>
-                        <button class="btn btn-active  inline-block"><BiSort className='font-bold text-xl' /></button>
+                        <button onClick={()=>setSortItem(!sortItem)} class="btn btn-active  inline-block"><BiSort className='font-bold text-xl' /></button>
 
 
                     </div>
