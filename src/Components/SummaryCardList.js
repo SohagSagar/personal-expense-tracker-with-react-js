@@ -2,9 +2,20 @@ import React from 'react';
 import { TbCurrencyTaka } from 'react-icons/tb';
 import { MdDriveFileRenameOutline } from 'react-icons/md';
 import { RiDeleteBin6Line } from 'react-icons/ri';
+import { removeFromLocalStroage } from './LocalStroage';
+import toast from 'react-hot-toast';
 
 const SummaryCardList = ({item,refreshUl,setRefreshUl}) => {
     const {id,type,amount,category,description}= item;
+    const handleRemoveItem =(id) =>{
+       const removeItem= removeFromLocalStroage(id,refreshUl,setRefreshUl);
+       if(removeItem){
+        toast.success('Item deleted successfully');
+        setRefreshUl(!refreshUl);
+    }else{
+        toast.error('Fail to delete item')
+    }
+    }
     return (
         <div class="card w-full bg-base-100 border pt-2">
             <div class="card-body p-5">
@@ -24,7 +35,7 @@ const SummaryCardList = ({item,refreshUl,setRefreshUl}) => {
                     <div >
                         <div class="btn-group ">
                             <button class="btn  btn-sm bg-green-600  border-none text-white"><MdDriveFileRenameOutline /></button>
-                            <button class="btn  btn-sm bg-red-600  border-none text-white"><RiDeleteBin6Line /></button>
+                            <button onClick={()=>handleRemoveItem(id)} class="btn  btn-sm bg-red-600  border-none text-white"><RiDeleteBin6Line /></button>
                         </div>
                     </div>
                     

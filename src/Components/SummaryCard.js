@@ -17,13 +17,17 @@ const SummaryCard = ({refreshUl,setRefreshUl}) => {
 
         <div className='grid grid-cols-1 gap-3'>
             {
-                [...items].reverse().map(item=><SummaryCardList
-                key={item.id}
-                item={item}
-                refreshUl={refreshUl}
-                setRefreshUl={setRefreshUl}
-                />)
+                items?.length<1 ? <p className='text-center text-lg font-semibold mt-3'>No item found</p> :
+                
+                    [...items].reverse().map(item=><SummaryCardList
+                    key={item.id}
+                    item={item}
+                    refreshUl={refreshUl}
+                    setRefreshUl={setRefreshUl}
+                    />)
+                
             }
+            
             
         </div>
 

@@ -25,15 +25,23 @@ const getStoredCart = () =>{
     return expenseTracker;
 }
 
-const removeFromLocalStroage = id => {
-    const storedCart = localStorage.getItem('expense-tracker');
-    if (storedCart) {
-        const shoppingCart = JSON.parse(storedCart);
-        if (id in shoppingCart) {
-            delete shoppingCart[id];
-            localStorage.setItem('expense-tracker', JSON.stringify(shoppingCart));
+const removeFromLocalStroage = (id,refreshUl,setRefreshUl) => {
+    const storedData = localStorage.getItem('items');
+    console.log(id);
+    if (storedData) {
+        const storedDataInLocalStroage = JSON.parse(storedData);
+        console.log(storedDataInLocalStroage);
+        const updatedData=[]
+        for(const item of storedDataInLocalStroage){
+            if(item.id!==id){
+                updatedData.push(item)
+            }
         }
+        localStorage.setItem('items', JSON.stringify(updatedData));
+        setRefreshUl(!refreshUl);
+        return true;
     }
+    
 }
 
 const deleteShoppingCart = (setRefreshCart,refreshCart) => {
