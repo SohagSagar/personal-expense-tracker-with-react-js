@@ -12,6 +12,7 @@ const SummaryCardList = ({ item, refreshUl, setRefreshUl }) => {
     const { id, type, amount, category, description } = item;
     const [targetedUpdateItem,setTargetedUpdateItem]=useState([])
 
+    console.log(type);
     // remove item from list
     const handleRemoveItem = (id) => {
         const removeItem = removeFromLocalStroage(id, refreshUl, setRefreshUl);
@@ -40,7 +41,7 @@ const SummaryCardList = ({ item, refreshUl, setRefreshUl }) => {
                     <div className='w-10/12'>
                         <h2 class="font-semibold">Descriptions: <span className='font-normal'>{description}</span></h2>
 
-                        <h2 class="font-semibold mt-2">Category: <span className='font-normal'>{category} |</span> <span className={`badge badge-md border-none text-white ${type === 'Expense' && 'bg-red-600'} bg-green-600`}>{type === 'Expense' ? '-' : '+'}<TbCurrencyTaka className='inline-block mb-1' />{amount}</span></h2>
+                        <h2 class="font-semibold mt-2">Category: <span className='font-normal'>{category} |</span> <span className={`badge badge-md border-none text-white ${type === 'Expense' ? 'bg-red-600'  : 'bg-green-600'}`}>{type === 'Expense' ? '-' : '+'}<TbCurrencyTaka className='inline-block mb-1' />{amount}</span></h2>
 
 
                     </div>
