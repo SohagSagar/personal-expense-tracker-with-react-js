@@ -30,8 +30,8 @@ const SummaryCardList = ({ item, refreshUl, setRefreshUl }) => {
 
     }
     return (
-        <div class="card w-full bg-base-100 border pt-2">
-            <div class="card-body p-5">
+        <div class="card w-full bg-base-100 border pt-2 ">
+            <div class="card-body p-5 z-10">
 
                 <div className='flex justify-between items-center'>
 

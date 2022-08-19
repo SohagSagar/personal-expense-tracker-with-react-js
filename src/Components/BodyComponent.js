@@ -15,7 +15,7 @@ const BodyComponent = ({refreshUl,setRefreshUl}) => {
 
 
     return (
-        <div className='body-container gap-5 mt-5'>
+        <div className='body-container gap-5 mt-5 relative'>
             {/* filter components */}
             <Filters setFilterByType={setFilterByType} setfilterByCategory={setfilterByCategory}/>
 

@@ -12,7 +12,7 @@ const Filters = ({setFilterByType,setfilterByCategory}) => {
         setfilterByCategory(e.target.value);
         setFilterByType(false)
     }
-
+    // 
     return (
         <div style={{ "position": "fixed", "marginTop": "20px","overflow": "scroll" ,"height":"600px" }} class="card w-80 bg-base-100 border  ">
             <div class="card-body">
