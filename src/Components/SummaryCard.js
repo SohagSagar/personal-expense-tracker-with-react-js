@@ -6,6 +6,7 @@ import { RiDeleteBin6Line } from 'react-icons/ri';
 
 
 const SummaryCard = () => {
+    const stroageData= JSON.parse(localStorage.getItem('items'))
     return (
 
         <div class="card w-full bg-base-100 border ">

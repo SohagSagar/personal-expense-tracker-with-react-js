@@ -1,7 +1,8 @@
-import logo from './logo.svg';
+
 import './App.css';
 import TotalExpenseIncome from './Components/TotalExpenseIncome';
 import BodyComponent from './Components/BodyComponent';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
       
       <TotalExpenseIncome/>
       <BodyComponent/>
-      
+      <Toaster />
     </div>
   );
 }

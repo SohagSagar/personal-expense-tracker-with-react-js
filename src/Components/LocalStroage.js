@@ -1,16 +1,17 @@
 // use local storage to manage cart data
-const addToLocalStroage = (data) => {
-    let expenseTracker = {};
-
-    //get the shopping cart from local storage
-    const storedData = localStorage.getItem('expense-tracker');
-    if (storedData) {
-        expenseTracker = JSON.parse(storedData);
+const addToLocalStroage = (incomeExpenseData) => {
+    const items = JSON.parse(localStorage.getItem('items'));
+    if(items===null){
+        let storeData = [];
+        storeData.push(incomeExpenseData);
+        localStorage.setItem('items', JSON.stringify(storeData));
+        return true;
+    }else{
+        let storeData = [...items];
+        storeData.push(incomeExpenseData)
+        localStorage.setItem('items', JSON.stringify(storeData));
+        return true;
     }
-
-    // add quantity
-    
-    localStorage.setItem('expense-tracker', JSON.stringify(expenseTracker));
 }
 
 const getStoredCart = () =>{

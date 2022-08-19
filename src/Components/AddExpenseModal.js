@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { MdError } from 'react-icons/md';
 import { addToLocalStroage, getStoredCart } from './LocalStroage';
 
@@ -8,21 +9,32 @@ const AddExpenseModal = () => {
     const [storedData, setStoreData] = useState([])
     const { register, reset, handleSubmit, formState: { errors } } = useForm();
     const requiredMessage = 'field is required';
-    const onSubmit = data => {
 
-    const items = JSON.parse(localStorage.getItem('items'));
-    // if (items) {
-    //     setStoreData(...storedData, items)
-    //      console.log(items);
-    // }
-    localStorage.setItem('items', JSON.stringify({items}, data));
+
     
-    console.log(items);
+    
+
+
+    const onSubmit = data => {
+    const randomId = Math.floor(10000000 + Math.random() * 10000000);
+   
+    const incomeExpenseData = {
+        id:randomId,
+        ...data
+    }
+
+    const sentDataToLocalStroage=  addToLocalStroage(incomeExpenseData);
+    if(sentDataToLocalStroage){
+        toast.success('Item added successfully')
+    }else{
+        toast.error('Fail to add item')
+    }
+    
+
+    
 
 
 
-
-        // console.log(data)
     }
     return (
         <div>
