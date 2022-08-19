@@ -6,7 +6,7 @@ import SummaryCardList from './SummaryCardList';
 
 
 
-const SummaryCard = ({refreshUl,setRefreshUl}) => {
+const SummaryCard = ({refreshUl,setRefreshUl,searchedText}) => {
     const [items,setItems]=useState([])
     useEffect(()=>{
         const stroageItems = JSON.parse(localStorage.getItem('items'))
@@ -19,7 +19,15 @@ const SummaryCard = ({refreshUl,setRefreshUl}) => {
             {
                 items?.length<1 ? <p className='text-center text-lg font-semibold mt-3'>No item found</p> :
                 
-                    [...items].reverse().map(item=><SummaryCardList
+                    [...items]?.filter((val) => {
+                        if (!searchedText) {
+                            return val;
+                        } else if (
+                            val.description.toLowerCase().includes(searchedText.toLowerCase()) 
+                        ) {
+                            return val;
+                        }
+                    })?.reverse().map(item=><SummaryCardList
                     key={item.id}
                     item={item}
                     refreshUl={refreshUl}
